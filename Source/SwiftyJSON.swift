@@ -231,6 +231,7 @@ public struct JSON {
                 _type = .Unknown
                 _error = NSError(domain: ErrorDomain, code: ErrorUnsupportedType, userInfo: [NSLocalizedDescriptionKey: "It is a unsupported type"])
             }
+	}
     }
 
     /// JSON type
