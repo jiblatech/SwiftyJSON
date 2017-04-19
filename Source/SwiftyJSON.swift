@@ -204,33 +204,33 @@ public struct JSON {
         }
         set {
             _error = nil
-            switch unwrap(newValue) {
-            case let number as NSNumber:
+            if let number = newValue as? NSNumber {
                 if number.isBool {
-                    _type = .bool
-                    self.rawBool = number.boolValue
+                    _type = .Bool
                 } else {
-                    _type = .number
-                    self.rawNumber = number
+                    _type = .Number
                 }
-            case let string as String:
-                _type = .string
+                self.rawNumber = number
+            }
+            else if let string = newValue as? String {
+                _type = .String
                 self.rawString = string
-            case _ as NSNull:
-                _type = .null
-            case nil:
-                _type = .null
-            case let array as [Any]:
-                _type = .array
+            }
+            else if let _ = newValue as? NSNull {
+                _type = .Null
+            }
+            else if let array = newValue as? [AnyObject] {
+                _type = .Array
                 self.rawArray = array
-            case let dictionary as [String : Any]:
-                _type = .dictionary
+            }
+            else if let dictionary = newValue as? [String : AnyObject] {
+                _type = .Dictionary
                 self.rawDictionary = dictionary
-            default:
-                _type = .unknown
+            }
+            else {
+                _type = .Unknown
                 _error = NSError(domain: ErrorDomain, code: ErrorUnsupportedType, userInfo: [NSLocalizedDescriptionKey: "It is a unsupported type"])
             }
-        }
     }
 
     /// JSON type
