@@ -228,7 +228,7 @@ public struct JSON {
                 self.rawDictionary = dictionary
             }
             else {
-                _type = .Unknown
+                _type = .unknown
                 _error = NSError(domain: ErrorDomain, code: ErrorUnsupportedType, userInfo: [NSLocalizedDescriptionKey: "It is a unsupported type"])
             }
 	}
