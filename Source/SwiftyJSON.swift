@@ -206,25 +206,25 @@ public struct JSON {
             _error = nil
             if let number = newValue as? NSNumber {
                 if number.isBool {
-                    _type = .Bool
+                    _type = .bool
                 } else {
-                    _type = .Number
+                    _type = .number
                 }
                 self.rawNumber = number
             }
             else if let string = newValue as? String {
-                _type = .String
+                _type = .string
                 self.rawString = string
             }
             else if let _ = newValue as? NSNull {
-                _type = .Null
+                _type = .null
             }
             else if let array = newValue as? [AnyObject] {
-                _type = .Array
+                _type = .array
                 self.rawArray = array
             }
             else if let dictionary = newValue as? [String : AnyObject] {
-                _type = .Dictionary
+                _type = .dictionary
                 self.rawDictionary = dictionary
             }
             else {
